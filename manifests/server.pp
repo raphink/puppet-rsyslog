@@ -10,6 +10,10 @@
 # [*server_dir*]
 # [*custom_config*]
 # [*high_precision_timestamps*]
+# [*ssl*]
+# [*ssl_ca*]
+# [*ssl_cert*]
+# [*ssl_key*]
 #
 # === Variables
 #
@@ -31,7 +35,11 @@ class rsyslog::server (
   $enable_onefile            = false,
   $server_dir                = '/srv/log',
   $custom_config             = undef,
-  $high_precision_timestamps = false
+  $high_precision_timestamps = false,
+  $ssl                       = false,
+  $ssl_ca                    = undef,
+  $ssl_cert                  = undef,
+  $ssl_key                   = undef,
 ) inherits rsyslog {
 
   $real_content = $custom_config ? {
@@ -42,5 +50,9 @@ class rsyslog::server (
   rsyslog::snippet {'server':
     ensure  => present,
     content => $real_content,
+  }
+
+  if $ssl and (!$enable_tcp or !defined($ssl_ca) or !defined($ssl_cert) or !defined($ssl_key)) {
+    fail('You need to define all the ssl options and enable tcp in order to use SSL.')
   }
 }
