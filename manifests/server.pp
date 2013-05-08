@@ -34,6 +34,7 @@ class rsyslog::server (
   $enable_onefile            = false,
   $server_dir                = '/srv/log',
   $custom_config             = undef,
+  $port                      = '514',
   $high_precision_timestamps = false,
   $ssl_ca                    = undef,
   $ssl_cert                  = undef,
