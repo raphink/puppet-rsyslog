@@ -18,6 +18,7 @@ class rsyslog (
   $gnutls_package_name    = $rsyslog::params::gnutls_package_name,
   $package_status         = $rsyslog::params::package_status,
   $rsyslog_d              = $rsyslog::params::rsyslog_d,
+  $purge_rsyslog_d        = $rsyslog::params::purge_rsyslog_d,
   $rsyslog_conf           = $rsyslog::params::rsyslog_conf,
   $rsyslog_default        = $rsyslog::params::rsyslog_default,
   $run_user               = $rsyslog::params::run_user,
